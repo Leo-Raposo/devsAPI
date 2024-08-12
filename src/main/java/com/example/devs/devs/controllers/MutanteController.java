@@ -94,7 +94,7 @@ public class MutanteController {
 
     @GetMapping("/quantidade-mutantes-na-escola")
     public ResponseEntity<Long> countMutantesNaEscola() {
-        Long count = mutanteRepository.countByInSchool(true);
+        Long count = mutanteRepository.countByEstaNaEscola(true);
         return ResponseEntity.status(HttpStatus.OK).body(count);
     }
 
@@ -120,6 +120,7 @@ public class MutanteController {
     @PostMapping("/saida-escola/{id}")
     public ResponseEntity<String> saidaEscola(@PathVariable(value = "id") UUID id) {
         MutanteModel mutanteModel = mutanteRepository.findById(id).orElseThrow();
+        mutanteModel.setEstaNaEscola(false);
         mutanteRepository.save(mutanteModel);
 
         return ResponseEntity.status(HttpStatus.OK).body(

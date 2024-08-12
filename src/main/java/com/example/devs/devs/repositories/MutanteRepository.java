@@ -8,5 +8,5 @@ import java.util.UUID;
 
 public interface MutanteRepository extends JpaRepository<MutanteModel, UUID> {
     List<MutanteModel> findByEstaNaEscola(boolean estaNaEscola);
-    Long countByInSchool(boolean estaNaEscola);
+    Long countByEstaNaEscola(boolean estaNaEscola);
 }
